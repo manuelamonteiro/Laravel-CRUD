@@ -44,9 +44,11 @@
                     </a>
                 </td>
                 <td>
-                    <a href="">
-                        <button type="button" class="btn btn-danger">Deletar</button>
-                    </a>
+                    <form action="{{ url('books/'.$books->id) . '/delete'}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Deletar</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

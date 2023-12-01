@@ -89,6 +89,13 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $book = $this->objBook->findOrFail($id);
+        $delete = $book->delete();
+
+        if ($delete) {
+            return redirect('books');
+        } else {
+            return redirect()->route('books.delete', $id)->with('error', 'Failed to delete the book');
+        }
     }
 }
