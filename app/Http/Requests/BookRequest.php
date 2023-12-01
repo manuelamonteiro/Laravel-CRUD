@@ -27,4 +27,15 @@ class BookRequest extends FormRequest
             'price' => 'required|numeric'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required'=> 'Coloque um Título!',
+            'pages.required'=> 'Coloque a quantidade de páginas!',
+            'price.required'=> 'Coloque o preço!',
+            'pages.numeric'=> 'A quantidade de páginas deve ser um número!',
+            'price.numeric'=> 'O preço deve ser um número!',
+        ];
+    }
 }
