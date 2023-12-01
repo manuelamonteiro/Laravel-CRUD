@@ -14,10 +14,12 @@ use App\Http\Controllers\BookController;
 |
 */
 
-Route::get('/books', [BookController::class, 'index']);
-Route::get('/books/create', [BookController::class, 'create']);
-Route::post('/books', [BookController::class, 'store']);
-Route::get('/books/{id}', [BookController::class, 'show']);
-Route::get('/books/{id}/edit', [BookController::class, 'edit']);
-Route::put('/books/{id}', [BookController::class, 'update']);
-Route::delete('/books/{id}/delete', [BookController::class,'destroy']);
+Route::prefix("/books")->group(function () {
+    Route::get('', [BookController::class, 'index']);
+    Route::get('/create', [BookController::class, 'create']);
+    Route::post('', [BookController::class, 'store']);
+    Route::get('/{id}', [BookController::class, 'show']);
+    Route::get('/{id}/edit', [BookController::class, 'edit']);
+    Route::put('/{id}', [BookController::class, 'update']);
+    Route::delete('/{id}/delete', [BookController::class, 'destroy']);
+});
