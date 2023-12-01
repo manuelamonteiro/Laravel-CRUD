@@ -55,20 +55,33 @@ class BookController extends Controller
         return view('show', compact('book'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $book = $this->objBook->find($id);
+        $users = $this->objUser->all();
+        return view('create', compact('book', 'users'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(BookRequest $request, string $id)
     {
-        //
+        $book = $this->objBook->find($id);
+
+        if (!$book) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        $update = $this->objBook->where(['id' => $id])->update([
+            'title' => $request->title,
+            'pages' => $request->pages,
+            'price' => $request->price,
+            'id_user' => $request->id_user,
+        ]);
+
+        if ($update) {
+            return redirect('books');
+        } else {
+            return redirect()->route('books.edit', $id)->with('error', 'Failed to update the book');
+        }
     }
 
     /**
