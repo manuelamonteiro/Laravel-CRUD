@@ -6,11 +6,13 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\ModelBook;
 
-class BookSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(ModelBook $book): void
-    {}
+    public function run(): void
+    {
+        ModelBook::factory(5)->create();
+    }
 }
